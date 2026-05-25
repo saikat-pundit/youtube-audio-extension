@@ -109,16 +109,29 @@ async function downloadAudio(videoId, statusElement) {
 
 // Function to get audio stream URL
 async function getAudioStream(videoId) {
-  // Using yt-dlp API service
-  const apiUrl = `https://ytdlapi.com/api/audio/${videoId}`;
+  // Using your own Cloudflare Worker
+  // IMPORTANT: Replace this URL with YOUR Cloudflare Worker URL!
+  const apiUrl = `https://youtube-audio-api.pages.dev/audio/${videoId}`;
   
-  const response = await fetch(apiUrl);
-  const data = await response.json();
+  console.log("Fetching audio from:", apiUrl);
   
-  if (data && data.audioUrl) {
-    return data.audioUrl;
-  } else {
-    throw new Error("Could not extract audio");
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    console.log("API Response:", data);
+    
+    if (data && data.audioUrl) {
+      return data.audioUrl;
+    } else {
+      throw new Error("No audio URL in response");
+    }
+  } catch (error) {
+    console.error("API Error:", error);
+    throw new Error("Could not extract audio: " + error.message);
   }
 }
 
