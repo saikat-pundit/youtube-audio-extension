@@ -1,0 +1,19 @@
+#audio-controls-panel button {
+  transition: all 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#audio-controls-panel button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#audio-controls-panel button:active {
+  transform: translateY(0px);
+}
+
+#audio-status {
+  transition: all 0.3s ease;
+}
