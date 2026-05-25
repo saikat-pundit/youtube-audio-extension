@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "YouTube Audio Extractor",
+  "version": "1.0",
+  "description": "Play or download audio from YouTube videos",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "https://www.youtube.com/*",
+    "https://youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/watch?v=*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icon.svg",
+    "default_title": "YouTube Audio"
+  },
+  "icons": {
+    "48": "icon.svg"
+  }
+}
